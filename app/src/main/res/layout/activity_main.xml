@@ -27,6 +27,5 @@
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="74dp"
-        android:onClick="onClickCamera"
-        android:src="@drawable/ic_camera_white_48dp" />
+        android:onClick="onClickCamera" />
 </RelativeLayout>
