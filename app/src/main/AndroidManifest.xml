@@ -25,6 +25,7 @@
             android:name=".AnalyzeActivity"
             android:label="@string/title_activity_analyze"
             android:theme="@style/AppTheme" />
+        <activity android:name=".ResultActivity"></activity>
     </application>
 
 </manifest>
