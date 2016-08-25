@@ -18,9 +18,15 @@ import org.jtransforms.fft.FloatFFT_2D;
 public class AnalyzeActivity extends AppCompatActivity {
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
-    ImageView imageView;
-    ProgressDialog progress;
-    TextView ageView;
+    public static String[] typename = {
+            "공룡형",
+            "2",
+            "3",
+            "4"
+    };
+    private ImageView imageView;
+    private ProgressDialog progress;
+    private TextView ageView, typeText;
     private int age;
     private int type;
 
@@ -31,6 +37,7 @@ public class AnalyzeActivity extends AppCompatActivity {
 
         imageView = (ImageView) findViewById(R.id.imageView);
         ageView = (TextView) findViewById(R.id.age);
+        typeText = (TextView) findViewById(R.id.typemsg);
 
         onNewIntent(getIntent());
     }
@@ -213,6 +220,7 @@ public class AnalyzeActivity extends AppCompatActivity {
         ageView.setText("" + (int) age);
 
         //TODO: set `type`
+        typeText.setText("당신의 피부타입은 " + typename[type] + "입니다.");
 
         new Handler().postDelayed(new Runnable() {
             @Override
