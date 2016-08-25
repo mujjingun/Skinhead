@@ -15,12 +15,12 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="150dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
+        android:adjustViewBounds="false"
+        android:scaleType="centerCrop"
         android:src="@android:drawable/title_bar" />
 
     <LinearLayout
@@ -62,5 +62,14 @@
             android:layout_marginTop="20dp"
             android:text="당신의 피부타입은 공룡형입니다."
             android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <Button
+            android:id="@+id/viewbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:onClick="onClickView"
+            android:text="나에게 맞는 피부관리법 보기" />
     </LinearLayout>
 </RelativeLayout>

@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">Skinhead</string>
-    <string name="title_activity_analyze">AnalyzeActivity</string>
+    <string name="title_activity_analyze">분석 결과</string>
 </resources>

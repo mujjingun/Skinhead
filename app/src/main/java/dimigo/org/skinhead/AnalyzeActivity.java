@@ -21,6 +21,8 @@ public class AnalyzeActivity extends AppCompatActivity {
     ImageView imageView;
     ProgressDialog progress;
     TextView ageView;
+    private int age;
+    private int type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +70,13 @@ public class AnalyzeActivity extends AppCompatActivity {
 
     public void onClickCamera(View v) {
         dispatchTakePictureIntent();
+    }
+
+    public void onClickView(View v) {
+        Intent i = new Intent(this, ResultActivity.class);
+        i.putExtra("age", age);
+        i.putExtra("type", type);
+        startActivity(i);
     }
 
     @Override
@@ -188,6 +197,7 @@ public class AnalyzeActivity extends AppCompatActivity {
 
         float[][] pixels = toRGB(photo, len, len);
         applyWindow(pixels, len, len);
+        float meanintensity = meanMat(pixels, len, len);
 
         float[][] mat = copyMat(pixels, len, len * 2);
         FloatFFT_2D fft = new FloatFFT_2D(len, len);
@@ -201,6 +211,8 @@ public class AnalyzeActivity extends AppCompatActivity {
 
         float age = sum;
         ageView.setText("" + (int) age);
+
+        //TODO: set `type`
 
         new Handler().postDelayed(new Runnable() {
             @Override
