@@ -47,7 +47,7 @@ public class AnalyzeActivity extends AppCompatActivity {
         Log.i("debug", "onNewIntent");
         Bundle extras = i.getExtras();
         if (extras == null) return;
-        Bitmap imageBitmap = (Bitmap) extras.get("data");
+        final Bitmap imageBitmap = (Bitmap) extras.get("data");
         if (imageBitmap != null) {
             setIntent(i);
 
@@ -59,7 +59,12 @@ public class AnalyzeActivity extends AppCompatActivity {
             progress.setCancelable(false);
             progress.show();
 
-            analyze(imageBitmap);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    analyze(imageBitmap);
+                }
+            }).run();
         }
     }
 
@@ -219,7 +224,11 @@ public class AnalyzeActivity extends AppCompatActivity {
         age = (int) sum;
         ageView.setText("" + age);
 
-        //TODO: set `type`
+        if (meanintensity < 20) type = 0;
+        else if (meanintensity < 25) type = 1;
+        else if (meanintensity < 30) type = 2;
+        else type = 3;
+
         Log.i("debug", "mean intensity: " + meanintensity);
         typeText.setText("당신의 피부타입은 " + typename[type] + "입니다.");
 
