@@ -19,10 +19,10 @@ public class AnalyzeActivity extends AppCompatActivity {
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
     public static String[] typename = {
-            "공룡형",
-            "2",
-            "3",
-            "4"
+            "지성",
+            "복합성",
+            "중성",
+            "건성"
     };
     private ImageView imageView;
     private ProgressDialog progress;
