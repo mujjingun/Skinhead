@@ -64,7 +64,7 @@ public class AnalyzeActivity extends AppCompatActivity {
                 public void run() {
                     analyze(imageBitmap);
                 }
-            }).run();
+            }).start();
         }
     }
 
@@ -218,23 +218,27 @@ public class AnalyzeActivity extends AppCompatActivity {
         applyWindow(mat, len, len);
         float sum = meanMat(mat, len, len);
 
-        BitmapDrawable fftbit = toBitmap(pixels, len, len);
-        imageView.setImageDrawable(fftbit);
+        final BitmapDrawable fftbit = toBitmap(pixels, len, len);
 
+        // 뭔가 그럴듯함
         age = (int) sum;
-        ageView.setText("" + age);
 
+        // 밝기로 정한다
         if (meanintensity < 20) type = 0;
         else if (meanintensity < 25) type = 1;
         else if (meanintensity < 30) type = 2;
         else type = 3;
 
         Log.i("debug", "mean intensity: " + meanintensity);
-        typeText.setText("당신의 피부타입은 " + typename[type] + "입니다.");
 
-        new Handler().postDelayed(new Runnable() {
+        new Handler(this.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
+
+                imageView.setImageDrawable(fftbit);
+                ageView.setText("" + age);
+                typeText.setText("당신의 피부타입은 " + typename[type] + "입니다.");
+
                 if (progress.isShowing())
                     progress.dismiss();
             }
