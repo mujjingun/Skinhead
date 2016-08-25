@@ -65,7 +65,7 @@ public class AnalyzeActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        onNewIntent(data);
+        if (data != null) onNewIntent(data);
     }
 
     private void dispatchTakePictureIntent() {
@@ -216,10 +216,11 @@ public class AnalyzeActivity extends AppCompatActivity {
         BitmapDrawable fftbit = toBitmap(pixels, len, len);
         imageView.setImageDrawable(fftbit);
 
-        float age = sum;
-        ageView.setText("" + (int) age);
+        age = (int) sum;
+        ageView.setText("" + age);
 
         //TODO: set `type`
+        Log.i("debug", "mean intensity: " + meanintensity);
         typeText.setText("당신의 피부타입은 " + typename[type] + "입니다.");
 
         new Handler().postDelayed(new Runnable() {
